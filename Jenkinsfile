@@ -1,8 +1,8 @@
 pipeline {
     agent { 
         node {
-            label 'jenkins-docker-slave-ssh'
-            // label 'jenkins-agent-docker'
+            // label 'jenkins-docker-slave-ssh'
+            label 'jenkins-agent-docker-jnlp'
             }
       }
     triggers {
