@@ -42,3 +42,27 @@ docker network create jenkins
 
 # Get Container image
   docker inspect <container_id> | grep IPAddress
+
+# Jenkins alpine jnlp slave with git-ftp installed
+
+
+# *******************************************************************************************
+# Pull image online (Run slave node)
+docker run --init jenkins/inbound-agent -url http://jenkins-blueocean:8080 -workDir=/home/jenkins da63e6ddc356d25cdc1fc9e347b1a0bf1752025e8c7798dcae13f3b54a4e4523 jenkins-slave-jdk-ftp
+
+# connect container to jenkins network
+docker network connect jenkins <88240bb0cc9b>
+# **********************************************************************************************
+
+
+# Set up jenkins slave node - localhost container
+curl -sO jenkins-blueocean:8080/jnlpJars/agent.jar
+java -jar agent.jar -url http://jenkins-blueocean:8080/ -secret da63e6ddc356d25cdc1fc9e347b1a0bf1752025e8c779
+8dcae13f3b54a4e4523 -name "jenkins-slave-jdk-ftp" -webSocket -workDir "/home/jenkins"
+
+# using local built in image -- Not working properly (Git-ftp installed)
+docker run --init jenkins-slave-jdk-ftp -url http://jenkins-blueocean:8080 -workDir=/home/jenkins da63e6ddc356d25cdc1fc9e347b1a0bf1752025e8c7798dcae13f3b54a4e4523 jenkins-slave-jdk-ftp
+
+
+git ftp catchup
+git ftp push
