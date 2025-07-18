@@ -61,7 +61,8 @@ java -jar agent.jar -url http://jenkins-blueocean:8080/ -secret da63e6ddc356d25c
 8dcae13f3b54a4e4523 -name "jenkins-slave-jdk-ftp" -webSocket -workDir "/home/jenkins"
 
 # using local built in image -- Not working properly (Git-ftp installed)
-docker run --init jenkins-slave-jdk-ftp -url http://jenkins-blueocean:8080 -workDir=/home/jenkins da63e6ddc356d25cdc1fc9e347b1a0bf1752025e8c7798dcae13f3b54a4e4523 jenkins-slave-jdk-ftp
+docker run --init jenkins-slave-jdk-
+ -url http://jenkins-blueocean:8080 -workDir=/home/jenkins da63e6ddc356d25cdc1fc9e347b1a0bf1752025e8c7798dcae13f3b54a4e4523 jenkins-slave-jdk-ftp
 
 
 git ftp catchup
